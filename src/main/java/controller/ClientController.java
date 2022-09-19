@@ -59,7 +59,7 @@ public class ClientController extends HttpServlet {
                             email = null;
                         }
 
-                        ClientModel clientModel = clientDao.getClientById(rg);
+                        ClientModel clientModel = clientModel = clientDao.getEventById(rg);
 
                         if (clientModel == null) {
 
