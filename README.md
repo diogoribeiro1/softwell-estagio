@@ -27,3 +27,5 @@ Run project:
     
     
 ![Screenshot from 2022-09-19 17-44-22](https://user-images.githubusercontent.com/89152312/191114238-0fcd4fda-11b3-4a0c-8f35-e3659408780b.png)
+
+![Screenshot from 2022-09-19 17-57-03](https://user-images.githubusercontent.com/89152312/191115120-1eb1fb20-f632-4db2-ad0c-207ad395db92.png)
