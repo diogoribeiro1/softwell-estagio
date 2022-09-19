@@ -18,7 +18,6 @@ $(function (){
         if(!validarForms()){
             alert("complete o formulario")
         }else {
-            console.log('sim')
             var nome = document.getElementById("inputNome").value;
             var email = document.getElementById("inputEmail4").value;
             var nomeMae = document.getElementById("inputMae").value;
@@ -34,8 +33,11 @@ $(function (){
                 url: "/softwell-estagio/home",
                 type: 'GET',
                 data: {nome, email, nomeMae, nomePai, cpf, celular, rg, dataNasc, action},
-                success: function () {
-                    alert('Salvo com Sucesso!')
+                success: function (dados) {
+                    console.log(dados)
+                    // alert('Salvo com Sucesso!');
+                    alert(dados)
+                    document.location.reload(true);
                 },
                 error: function (error) {
                     alert(error);

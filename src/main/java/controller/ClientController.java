@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.Gson;
 import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import dao.ClientDao;
 import model.ClientModel;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -64,12 +66,20 @@ public class ClientController extends HttpServlet {
                             clientModel = new ClientModel(nome, email, data, rg, cpf, celular, nomeMae, nomePai, timestamp);
                             clientDao.saveClient(clientModel);
 
-                            cadastroSucesso(req, resp);
+                            PrintWriter out = resp.getWriter();
+                            out.print(new Gson().toJson("Cliente Salvo"));
+                            out.flush();
+
+//                            cadastroSucesso(req, resp);
 
                         } else {
 
                             timestamp = clientModel.getDataCadastrada();
-                            cadastroErro(req, resp, timestamp);
+
+                            PrintWriter out = resp.getWriter();
+                            out.print(new Gson().toJson("Cliente ja possui cadastrado"));
+                            out.flush();
+//                            cadastroErro(req, resp, timestamp);
                         }
 
                     } catch (Exception e) {

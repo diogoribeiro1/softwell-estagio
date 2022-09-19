@@ -56,7 +56,6 @@ public final class cadastroSucesso_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("</head>\n");
       out.write("<body>\n");
       out.write("<h1>Cliente cadastrado com sucesso</h1>\n");
-      out.write("\n");
       out.write("</body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

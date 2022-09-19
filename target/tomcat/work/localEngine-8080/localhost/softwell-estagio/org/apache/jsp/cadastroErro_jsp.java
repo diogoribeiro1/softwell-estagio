@@ -57,8 +57,6 @@ public final class cadastroErro_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("<body>\n");
       out.write("<h1>Cliente ja possui cadastro</h1>\n");
       out.write("<c:out value=\"${timestamp}\"/>\n");
-      out.write("\n");
-      out.write("\n");
       out.write("</body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
