@@ -75,9 +75,12 @@ public class ClientController extends HttpServlet {
                         } else {
 
                             timestamp = clientModel.getDataCadastrada();
+                            Date datehoje = new Date(timestamp.getTime());
+                            SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                            String timestampString = sdf1.format(datehoje);
 
                             PrintWriter out = resp.getWriter();
-                            out.print(new Gson().toJson("Cliente ja possui cadastrado"));
+                            out.print(new Gson().toJson("Cliente ja possui cadastrado: " + timestampString));
                             out.flush();
 //                            cadastroErro(req, resp, timestamp);
                         }
