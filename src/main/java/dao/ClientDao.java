@@ -33,7 +33,7 @@ public class ClientDao {
         pstm.close();
     }
 
-    public ClientModel getEventById(String rgClient) throws Exception {
+    public ClientModel getClientById(String rgClient) throws Exception {
 
         String comandoSQL = "select * from \"prv_cliente\" where rg = ?";
 
