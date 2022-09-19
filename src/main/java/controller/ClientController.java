@@ -80,7 +80,7 @@ public class ClientController extends HttpServlet {
                             String timestampString = sdf1.format(datehoje);
 
                             PrintWriter out = resp.getWriter();
-                            out.print(new Gson().toJson("Cliente ja possui cadastrado: " + timestampString));
+                            out.print(new Gson().toJson("Cliente ja possui cadastro: " + timestampString));
                             out.flush();
 //                            cadastroErro(req, resp, timestamp);
                         }
