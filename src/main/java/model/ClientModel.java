@@ -43,14 +43,6 @@ public class ClientModel {
         this.dataCadastrada = dataCadastrada;
     }
 
-    public Timestamp getDataCadastrada() {
-        return dataCadastrada;
-    }
-
-    public void setDataCadastrada(Timestamp dataCadastrada) {
-        this.dataCadastrada = dataCadastrada;
-    }
-
     public ClientModel(Integer id, String nome, String email, Date dataNasc, String rg, String cpf, String celular, String nomeMae, String nomePai, Timestamp dataCadastrada) {
         this.id = id;
         this.nome = nome;
@@ -61,6 +53,14 @@ public class ClientModel {
         this.celular = celular;
         this.nomeMae = nomeMae;
         this.nomePai = nomePai;
+        this.dataCadastrada = dataCadastrada;
+    }
+
+    public Timestamp getDataCadastrada() {
+        return dataCadastrada;
+    }
+
+    public void setDataCadastrada(Timestamp dataCadastrada) {
         this.dataCadastrada = dataCadastrada;
     }
 

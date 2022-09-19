@@ -22,12 +22,16 @@ public class ClientController extends HttpServlet {
 
     private ClientDao clientDao = new ClientDao();
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String action = req.getParameter("action");
+
         if (action == null) {
+
             RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
             rd.forward(req, resp);
+
         }else {
 
             switch (action) {
@@ -60,17 +64,12 @@ public class ClientController extends HttpServlet {
                             clientModel = new ClientModel(nome, email, data, rg, cpf, celular, nomeMae, nomePai, timestamp);
                             clientDao.saveClient(clientModel);
 
-                            RequestDispatcher rd = req.getRequestDispatcher("cadastroSucesso.jsp");
-                            rd.forward(req, resp);
+                            cadastroSucesso(req, resp);
 
                         } else {
 
-                            System.out.println(clientModel.getDataCadastrada());
                             timestamp = clientModel.getDataCadastrada();
-
-                            req.setAttribute("timestamp", timestamp);
-                            RequestDispatcher rd = req.getRequestDispatcher("cadastroErro.jsp");
-                            rd.forward(req, resp);
+                            cadastroErro(req, resp, timestamp);
                         }
 
                     } catch (Exception e) {
@@ -81,13 +80,9 @@ public class ClientController extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
     protected void cadastroSucesso(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("cadastroSucesso");
+        RequestDispatcher rd = req.getRequestDispatcher("cadastroSucesso.jsp");
+        rd.forward(req, resp);
     }
 
     protected void cadastroErro(HttpServletRequest req, HttpServletResponse resp, Timestamp timestamp) throws ServletException, IOException {
