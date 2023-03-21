@@ -1,7 +1,6 @@
 package controller;
 
 import com.google.gson.Gson;
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import dao.ClientDao;
 import model.ClientModel;
 
@@ -13,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -70,8 +67,6 @@ public class ClientController extends HttpServlet {
                             out.print(new Gson().toJson("Cliente Salvo"));
                             out.flush();
 
-//                            cadastroSucesso(req, resp);
-
                         } else {
 
                             timestamp = clientModel.getDataCadastrada();
@@ -82,7 +77,6 @@ public class ClientController extends HttpServlet {
                             PrintWriter out = resp.getWriter();
                             out.print(new Gson().toJson("Cliente ja possui cadastro: " + timestampString));
                             out.flush();
-//                            cadastroErro(req, resp, timestamp);
                         }
 
                     } catch (Exception e) {

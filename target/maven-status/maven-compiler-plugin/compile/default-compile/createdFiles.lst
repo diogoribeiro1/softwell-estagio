@@ -1,4 +1,4 @@
 dao/Conexao.class
-controller/ClientController.class
 model/ClientModel.class
+controller/ClientController.class
 dao/ClientDao.class

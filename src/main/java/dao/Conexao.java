@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Conexao {
     private String url = "jdbc:postgresql://localhost:5432/softwell_db";
     private String usuario = "postgres";
-    private String senha = "postgres";
+    private String senha = "123";
 
     public Connection getConnection() throws Exception {
         Connection conn = null;

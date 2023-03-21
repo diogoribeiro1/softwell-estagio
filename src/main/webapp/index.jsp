@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1>Softwell Solutions - Diogo Ribeiro</h1>
+    <h1>Softwell Solutions</h1>
     <form method="POST" class="row g-3">
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Email</label>
@@ -46,11 +46,15 @@
         <div class="col-12">
             <button type="button" id="btnSalvar" class="btn btn-primary">Salvar</button>
         </div>
+        <div id="alerta-sucesso" class="alert alert-success" role="alert">
+            Salvo com sucesso
+          </div>
     </form>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src= "js/script.js"></script>
 </body>
 </html>

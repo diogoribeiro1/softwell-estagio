@@ -60,7 +60,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</head>\n");
       out.write("<body>\n");
       out.write("<div class=\"container mt-5\">\n");
-      out.write("    <h1>Softwell Solutions - Diogo Ribeiro</h1>\n");
+      out.write("    <h1>Softwell Solutions</h1>\n");
       out.write("    <form method=\"POST\" class=\"row g-3\">\n");
       out.write("        <div class=\"col-md-6\">\n");
       out.write("            <label for=\"inputEmail4\" class=\"form-label\">Email</label>\n");
@@ -98,11 +98,15 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"col-12\">\n");
       out.write("            <button type=\"button\" id=\"btnSalvar\" class=\"btn btn-primary\">Salvar</button>\n");
       out.write("        </div>\n");
+      out.write("        <div id=\"alerta-sucesso\" class=\"alert alert-success\" role=\"alert\">\n");
+      out.write("            Salvo com sucesso\n");
+      out.write("          </div>\n");
       out.write("    </form>\n");
       out.write("</div>\n");
       out.write("<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\" type=\"text/javascript\"></script>\n");
       out.write("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js\"></script>\n");
       out.write("<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8\" crossorigin=\"anonymous\"></script>\n");
+      out.write("<script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script>\n");
       out.write("<script src= \"js/script.js\"></script>\n");
       out.write("</body>\n");
       out.write("</html>\n");

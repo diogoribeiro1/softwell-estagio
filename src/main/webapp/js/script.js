@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    document.getElementById("alerta-sucesso").style.visibility = "hidden";
     $("#inputCelular").mask("(00)00000-0000")
     $("#inputRg").mask("00.000.000-00")
     $("#inputCpf").mask("000.000.000-00")
@@ -36,8 +37,24 @@ $(function (){
                 success: function (dados) {
                     console.log(dados)
                     // alert('Salvo com Sucesso!');
-                    alert(dados)
+                    // alert(dados)
+                    if ($("#alerta-sucesso").is(':visible')) {
+                        alert('The element is visible');
+                      } else {
+                        alert('The element is hidden');
+                        document.getElementById("alerta-sucesso").style.visibility = "visible"; 
+                      }
+                      
                     document.location.reload(true);
+                    $("#btnSalvar").
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'Salvo com sucesso',
+                        showConfirmButton: false,
+                        timer: 25000
+                      })
+                      
                 },
                 error: function (error) {
                     alert(error);
