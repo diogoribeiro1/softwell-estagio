@@ -10,13 +10,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "ClientController", urlPatterns = {"/home"})
+@WebServlet(name = "ClientController", urlPatterns = { "/home" })
 public class ClientController extends HttpServlet {
 
     private ClientDao clientDao = new ClientDao();
@@ -31,7 +35,7 @@ public class ClientController extends HttpServlet {
             RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
             rd.forward(req, resp);
 
-        }else {
+        } else {
 
             switch (action) {
 
@@ -45,6 +49,7 @@ public class ClientController extends HttpServlet {
                     String celular = req.getParameter("celular");
                     String rg = req.getParameter("rg");
                     String dataNasc = req.getParameter("dataNasc");
+
                     try {
 
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -60,9 +65,11 @@ public class ClientController extends HttpServlet {
 
                         if (clientModel == null) {
 
-                            clientModel = new ClientModel(nome, email, data, rg, cpf, celular, nomeMae, nomePai, timestamp);
+                            clientModel = new ClientModel(nome, email, data, rg, cpf, celular, nomeMae, nomePai,
+                                    timestamp);
                             clientDao.saveClient(clientModel);
 
+                            resp.setStatus(HttpServletResponse.SC_CREATED);
                             PrintWriter out = resp.getWriter();
                             out.print(new Gson().toJson("Cliente Salvo"));
                             out.flush();
@@ -74,8 +81,10 @@ public class ClientController extends HttpServlet {
                             SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                             String timestampString = sdf1.format(datehoje);
 
+                            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                             PrintWriter out = resp.getWriter();
-                            out.print(new Gson().toJson("Cliente ja possui cadastro: " + timestampString));
+                            out.print(new Gson().toJson("Cliente ja possui cadastro: " +
+                            timestampString));
                             out.flush();
                         }
 
@@ -87,12 +96,48 @@ public class ClientController extends HttpServlet {
         }
     }
 
-    protected void cadastroSucesso(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private static String getBody(HttpServletRequest request) throws IOException {
+
+        String body = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        BufferedReader bufferedReader = null;
+
+        try {
+            InputStream inputStream = request.getInputStream();
+            if (inputStream != null) {
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                char[] charBuffer = new char[128];
+                int bytesRead = -1;
+                while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
+                    stringBuilder.append(charBuffer, 0, bytesRead);
+                }
+            } else {
+                stringBuilder.append("");
+            }
+        } catch (IOException ex) {
+            throw ex;
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException ex) {
+                    throw ex;
+                }
+            }
+        }
+
+        body = stringBuilder.toString();
+        return body;
+    }
+
+    protected void cadastroSucesso(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         RequestDispatcher rd = req.getRequestDispatcher("cadastroSucesso.jsp");
         rd.forward(req, resp);
     }
 
-    protected void cadastroErro(HttpServletRequest req, HttpServletResponse resp, Timestamp timestamp) throws ServletException, IOException {
+    protected void cadastroErro(HttpServletRequest req, HttpServletResponse resp, Timestamp timestamp)
+            throws ServletException, IOException {
         req.setAttribute("timestamp", timestamp);
         RequestDispatcher rd = req.getRequestDispatcher("cadastroErro.jsp");
         rd.forward(req, resp);

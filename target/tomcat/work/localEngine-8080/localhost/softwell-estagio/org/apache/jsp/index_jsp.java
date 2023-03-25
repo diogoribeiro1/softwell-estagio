@@ -98,9 +98,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"col-12\">\n");
       out.write("            <button type=\"button\" id=\"btnSalvar\" class=\"btn btn-primary\">Salvar</button>\n");
       out.write("        </div>\n");
-      out.write("        <div id=\"alerta-sucesso\" class=\"alert alert-success\" role=\"alert\">\n");
-      out.write("            Salvo com sucesso\n");
-      out.write("          </div>\n");
       out.write("    </form>\n");
       out.write("</div>\n");
       out.write("<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\" type=\"text/javascript\"></script>\n");

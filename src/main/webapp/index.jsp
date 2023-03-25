@@ -46,9 +46,6 @@
         <div class="col-12">
             <button type="button" id="btnSalvar" class="btn btn-primary">Salvar</button>
         </div>
-        <div id="alerta-sucesso" class="alert alert-success" role="alert">
-            Salvo com sucesso
-          </div>
     </form>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

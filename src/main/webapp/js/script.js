@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    document.getElementById("alerta-sucesso").style.visibility = "hidden";
+
     $("#inputCelular").mask("(00)00000-0000")
     $("#inputRg").mask("00.000.000-00")
     $("#inputCpf").mask("000.000.000-00")
@@ -30,18 +30,11 @@ $(function () {
 
             var action = 'POST';
 
-            $.ajax({
+            const xhttp = new XMLHttpRequest();
 
-                url: "/softwell-estagio/home",
-                type: 'GET',
-                data: { nome, email, nomeMae, nomePai, cpf, celular, rg, dataNasc, action },
-
-                success: function (dados) {
-
+            xhttp.onload = function () {
+                if (this.readyState == 4 && this.status == 201) {
                     limparForm();
-
-                    document.getElementById("alerta-sucesso").style.visibility = "visible";
-
                     Swal.fire({
                         position: 'top',
                         icon: 'success',
@@ -49,12 +42,43 @@ $(function () {
                         showConfirmButton: false,
                         timer: 2500
                     })
-
-                },
-                error: function (error) {
-                    alert(error);
+                } else if (this.readyState == 4 && this.status == 404) {
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'error',
+                        title: 'Rg ja cadastrado',
+                        showConfirmButton: false,
+                        timer: 2500
+                    })
                 }
-            })
+            }
+            var params =  "?action="+action+"&nome="+nome+"&email="+email+"&nomeMae="+nomeMae+"&nomePai="+nomePai+"&cpf="+cpf+"&celular="+celular+"&rg="+rg+"&dataNasc="+dataNasc;       
+            xhttp.open("GET", "/softwell-estagio/home" + params, true);
+            xhttp.send();
+
+            // $.ajax({
+
+            //     url: "/softwell-estagio/home",
+            //     type: 'GET',
+            //     data: { nome, email, nomeMae, nomePai, cpf, celular, rg, dataNasc, action },
+
+            //     success: function (dados) {
+
+            //         limparForm();
+
+            //         Swal.fire({
+            //             position: 'top',
+            //             icon: 'success',
+            //             title: 'Salvo com sucesso',
+            //             showConfirmButton: false,
+            //             timer: 2500
+            //         })
+
+            //     },
+            //     error: function (error) {
+            //         alert(error);
+            //     }
+            // })
         }
     })
 })
