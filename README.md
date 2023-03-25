@@ -1,7 +1,7 @@
 # softwell-estagio 
 
 <h3><li>Tecnologias usadas</li></h3>
-    Java<br>
+    Java 11<br>
     Servlet<br>
     Ajax<br>
     Jquery<br>
@@ -13,11 +13,17 @@
     TomCat<br>
     <br>
     
-Clone project:
+<h2> How to settup the project </h2>
+ 
+Create the database in postgreSQL
+
+    CREATE DATABASE "softwell_db";
+
+Clone the project:
 
     $ git clone https://github.com/diogoribeiro1/softwell-estagio.git
     
-Run project:
+Run the project:
 
     - Eclipse - 
     1- clique no projeto com o botao direito do mouse 
