@@ -2,12 +2,31 @@ package dao;
 
 import model.ClientModel;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 
 public class ClientDao {
 
     Connection conn;
     PreparedStatement pstm;
+
+    public void executarScriptSQL() throws Exception {
+
+        String sqlFile = "data.sql";
+        String content = new String(Files.readAllBytes(Paths.get(sqlFile)), StandardCharsets.UTF_8);
+        conn = new Conexao().getConnection();
+        Statement statement;
+        try {
+
+            statement = conn.createStatement();
+            statement.execute(content);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void saveClient(ClientModel clientModel) throws Exception {
 
@@ -35,6 +54,8 @@ public class ClientDao {
 
     public ClientModel getClientById(String rgClient) throws Exception {
 
+        executarScriptSQL();
+
         String comandoSQL = "select * from \"prv_cliente\" where rg = ?";
 
         conn = new Conexao().getConnection();
@@ -59,7 +80,8 @@ public class ClientDao {
                 String nomePai = resultSet.getString("nome_pai");
                 Timestamp dataCadastrada = resultSet.getTimestamp("data_cadastro");
 
-                ClientModel clientModel = new ClientModel(id, nome, email, (Date) dataNasc,  rg,  cpf,  celular,  nomeMae,  nomePai, dataCadastrada);
+                ClientModel clientModel = new ClientModel(id, nome, email, (Date) dataNasc, rg, cpf, celular, nomeMae,
+                        nomePai, dataCadastrada);
 
                 return clientModel;
             }

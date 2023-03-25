@@ -1,4 +1,4 @@
-create database "softwell_db";
+create database IF NOT EXISTS "softwell_db";
 create table IF NOT EXISTS "prv_cliente"(
                                             "id" SERIAL PRIMARY KEY,
                                             "nome" varchar(80) NOT NULL,
